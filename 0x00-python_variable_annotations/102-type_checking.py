@@ -28,10 +28,7 @@ def zoom_array(lst: Tuple, factor: int = 2) -> List:
     List: A list with each element of the tuple repeated according
     to the factor.
     """
-    zoomed_in: List = [
-        item for item in lst
-        for i in range(factor)
-    ]
+    zoomed_in: List = [item for item in lst for _ in range(factor)]
     return zoomed_in
 
 
