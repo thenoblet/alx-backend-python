@@ -11,7 +11,7 @@ integer and floating-point numbers in a list.
 from typing import List, Union
 
 
-def sum_mixed_list(mxd_list: List[Union[float, int]]) -> float:
+def sum_mixed_list(mxd_list: List[Union[int, float]]) -> float:
     """
     Compute the sum of a list containing both integer and
     floating-point numbers.
