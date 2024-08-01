@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-i
+
 """
 This module provides basic mathematical operations.
 
