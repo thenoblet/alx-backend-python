@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from typing import Tuple, List
-
 """
 This module provides a utility function for "zooming" into a tuple
 by repeating its elements.
@@ -9,7 +7,10 @@ by repeating its elements.
 It includes the `zoom_array` function, which takes a tuple and a factor
 and returns a list where each element in the tuple is repeated
 according to the factor.
+
 """
+
+from typing import Tuple, List
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
@@ -28,7 +29,10 @@ def zoom_array(lst: Tuple, factor: int = 2) -> List:
     List: A list with each element of the tuple repeated according
     to the factor.
     """
-    zoomed_in: List = [item for item in lst for _ in range(factor)]
+    zoomed_in: List = [
+            item for item in lst
+            for _ in range(factor)
+    ]
     return zoomed_in
 
 
