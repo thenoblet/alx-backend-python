@@ -14,24 +14,6 @@ from parameterized import parameterized
 from utils import access_nested_map
 
 
-def custom_name_func(func, param_num, param):
-    """
-    Generates a custom name for each test case based on input parameters.
-
-    Args:
-        func: The test function being executed.
-        param_num: The index of the parameter set.
-        param: The parameters passed to the test function.
-
-    Returns:
-        str: A custom name for the test case that includes information about
-             the nested map and path.
-    """
-    nested_map = param[0][0]
-    path = param[0][1]
-    return f"{func.__name__}_Map{nested_map}_Path{path}"
-
-
 class TestAccessNestedMap(unittest.TestCase):
     """
     Unit tests for the `access_nested_map` function.
@@ -43,7 +25,7 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
         ({"a": {"b": 2}}, ("a", "b"), 2)
-    ], name_func=custom_name_func)
+    ])
     def test_access_nested_map(self, nested_map, path, expected):
         """
         Tests the `access_nested_map` function with different parameter sets.
