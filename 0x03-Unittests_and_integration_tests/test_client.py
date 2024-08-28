@@ -16,7 +16,7 @@ network access.
 """
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, PropertyMock
 from parameterized import parameterized
 from client import GithubOrgClient
 
@@ -64,3 +64,33 @@ class TestGithubOrgClient(unittest.TestCase):
 
         self.assertEqual(organisation, expected)
         mock_get_json.assert_called_once_with(url)
+
+    def test_public_repos_url(self):
+        """
+        Test the `_public_repos_url` property of `GithubOrgClient`.
+
+        This test ensures that the `_public_repos_url` property correctly
+        returns the public repositories URL for a given organization by
+        accessing the `org` property.
+
+        It uses `unittest.mock.PropertyMock` to mock the `org` property to
+        return a predefined payload containing the `repos_url`. The test then
+        checks that `_public_repos_url` extracts this URL correctly.
+
+        Asserts:
+            - The returned value from `_public_repos_url` matches the
+              `repos_url` from the mocked `org` property.
+            - The `org` property is accessed exactly once.
+        """
+        with patch(
+            "client.GithubOrgClient.org",
+            new_callable=PropertyMock
+        ) as mock_org:
+            payload = {"repos_url": "https://api.github.com/orgs/google/repos"}
+            mock_org.return_value = payload
+
+            client = GithubOrgClient("google")
+            result = client._public_repos_url
+
+            self.assertEqual(result, payload["repos_url"])
+            mock_org.assert_called_once()
